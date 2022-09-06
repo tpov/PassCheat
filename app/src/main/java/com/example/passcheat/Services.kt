@@ -54,6 +54,8 @@ class Services : Service() {
                         0
                     ) == 1
                 ) {
+                    val notification = notificationBuilder
+                        .clearActions()
                     delay(5000)
                     Log.d("PassCheat", "START_STICKY")
                     stopSelf()
@@ -90,8 +92,6 @@ class Services : Service() {
         .setContentTitle("Title")
         .setContentText("Text")
         .setSmallIcon(R.drawable.ic_launcher_background)
-        .setProgress(100, 0, false)
-        .setOnlyAlertOnce(true)
 
     inner class LocalBinder : Binder() {
 
