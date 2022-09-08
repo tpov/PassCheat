@@ -1,21 +1,20 @@
 package com.example.passcheat
 
-import android.app.KeyguardManager
-import android.app.NotificationChannel
-import android.app.NotificationManager
-import android.app.Service
-import android.app.admin.DevicePolicyManager
+import android.annotation.SuppressLint
+import android.app.*
 import android.content.Context
 import android.content.Intent
-import android.os.Binder
+import android.graphics.PixelFormat
 import android.os.Build
 import android.os.IBinder
 import android.util.Log
+import android.view.Gravity
+import android.view.LayoutInflater
+import android.view.WindowManager
 import android.widget.Toast
 import androidx.annotation.Nullable
 import androidx.annotation.RequiresApi
 import androidx.core.app.NotificationCompat
-import androidx.core.content.ContextCompat
 import kotlinx.coroutines.*
 
 
@@ -50,7 +49,8 @@ class Services : Service() {
         coroutineScope.launch {
             while (!finish) {
 
-                val manager = applicationContext.getSystemService(Context.KEYGUARD_SERVICE) as KeyguardManager
+                val manager =
+                    applicationContext.getSystemService(Context.KEYGUARD_SERVICE) as KeyguardManager
                 Log.d("PassCheat", manager.isDeviceSecure.toString())
 
                 if (manager.isDeviceSecure) {
@@ -58,11 +58,11 @@ class Services : Service() {
                     stopSelf()
                     coroutineScope.cancel()
                 } else {
+                    createDialog("")
                     val notification = notificationBuilder
                         .build()
                     notificationManager.notify(NOTIFICATION_ID, notification)
                     createNotificationChannel()
-                    openSettings()
                     Log.d("PassCheat", "START_FLAG_RETRY")
                     finish = false
                     Toast.makeText(
@@ -78,10 +78,24 @@ class Services : Service() {
         return START_STICKY
     }
 
-    private fun openSettings() {
-        var intent = Intent(DevicePolicyManager.ACTION_SET_NEW_PARENT_PROFILE_PASSWORD)
-        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK;
-        startActivity(intent)
+    @SuppressLint("InvalidWakeLockTag")
+    private fun createDialog(msg: String) {
+
+        var windowManager2 = getSystemService(WINDOW_SERVICE) as WindowManager
+        val layoutInflater = getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
+        val view = layoutInflater.inflate(R.layout.dialog, null);
+        val params = WindowManager.LayoutParams(
+            WindowManager.LayoutParams.WRAP_CONTENT,
+            WindowManager.LayoutParams.WRAP_CONTENT,
+            WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY,
+            WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE,
+            PixelFormat.TRANSLUCENT
+        )
+
+        params.gravity = Gravity.CENTER or Gravity.CENTER;
+        params.x = 0;
+        params.y = 0;
+        windowManager2.addView(view, params)
     }
 
     private fun createNotificationChannel() {
@@ -96,8 +110,8 @@ class Services : Service() {
     }
 
     private fun createNotificationBuilder() = NotificationCompat.Builder(this, CHANNEL_ID)
-        .setContentTitle("Title")
-        .setContentText("Text")
+        .setContentTitle("Create password")
+        .setContentText("Please create a password to protect your device!")
         .setSmallIcon(R.drawable.ic_launcher_background)
 
     companion object {

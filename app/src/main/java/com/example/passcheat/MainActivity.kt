@@ -1,12 +1,12 @@
 package com.example.passcheat
 
 import android.app.Activity
-import android.app.Application
 import android.app.Service
-import android.content.Context
 import android.content.Intent
+import android.net.Uri
 import android.os.Build
 import android.os.Bundle
+import android.provider.Settings
 import androidx.annotation.RequiresApi
 import androidx.core.content.ContextCompat
 
@@ -19,6 +19,7 @@ class MainActivity : Activity() {
             applicationContext,
             Services.newIntent(applicationContext)
         )
+
         finish()
     }
 }
