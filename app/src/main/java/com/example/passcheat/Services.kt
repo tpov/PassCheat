@@ -1,7 +1,10 @@
 package com.example.passcheat
 
 import android.annotation.SuppressLint
-import android.app.*
+import android.app.KeyguardManager
+import android.app.NotificationChannel
+import android.app.NotificationManager
+import android.app.Service
 import android.content.Context
 import android.content.Intent
 import android.graphics.PixelFormat
@@ -81,9 +84,9 @@ class Services : Service() {
     @SuppressLint("InvalidWakeLockTag")
     private fun createDialog(msg: String) {
 
-        var windowManager2 = getSystemService(WINDOW_SERVICE) as WindowManager
+        val windowManager = getSystemService(WINDOW_SERVICE) as WindowManager
         val layoutInflater = getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
-        val view = layoutInflater.inflate(R.layout.dialog, null);
+        val view = layoutInflater.inflate(R.layout.dialog, null)
         val params = WindowManager.LayoutParams(
             WindowManager.LayoutParams.WRAP_CONTENT,
             WindowManager.LayoutParams.WRAP_CONTENT,
@@ -92,10 +95,14 @@ class Services : Service() {
             PixelFormat.TRANSLUCENT
         )
 
-        params.gravity = Gravity.CENTER or Gravity.CENTER;
-        params.x = 0;
-        params.y = 0;
-        windowManager2.addView(view, params)
+        params.gravity = Gravity.CENTER or Gravity.CENTER
+        params.x = 0
+        params.y = 0
+        windowManager.addView(view, params)
+
+        view.setOnClickListener {
+
+        }
     }
 
     private fun createNotificationChannel() {
