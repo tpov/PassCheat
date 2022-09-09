@@ -48,12 +48,10 @@ class Services : Service() {
     override fun onCreate() {
         super.onCreate()
 
-        createNotificationChannel()
         startForeground(NOTIFICATION_ID, notificationBuilder.build())
     }
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
-        createNotificationChannel()
         val notification = notificationBuilder.build()
         notificationManager.notify(NOTIFICATION_ID, notification)
         val manager =
@@ -66,12 +64,11 @@ class Services : Service() {
             while (!finish) {
                 when {
                     manager.isDeviceSecure -> {
-                        finish = true
                         stopSelf()
-                        coroutineScope.cancel()
-
                     }
                     else -> {
+
+                        finishDialog = false
                         finish = false
                         createDialog(windowManager, view)
                         notificationManager.notify(NOTIFICATION_ID, notification)
@@ -80,12 +77,12 @@ class Services : Service() {
 
                     }
                 }
+
                 delay(DELAY)
                 if (!finishDialog) {
                     finishDialog = true
                     windowManager.removeView(view)
                 }
-                finishDialog = false
             }
         }
         return START_STICKY
@@ -122,7 +119,7 @@ class Services : Service() {
         }
 
         val buttonCancel = (view.findViewById(R.id.button_cancel) as Button)
-        buttonCancel.setBackgroundColor(R.color.background_red)
+        buttonCancel.setBackgroundColor(androidx.appcompat.R.color.material_blue_grey_800)
         buttonCancel.setTextColor(getColor(R.color.text))
         buttonCancel.setOnClickListener {
             if (!finishDialog) {
@@ -159,8 +156,8 @@ class Services : Service() {
         private const val CHANNEL_ID = "channel_id"
         private const val CHANNEL_NAME = "create_password"
         private const val NOTIFICATION_ID = 1
-        private const val DELAY: Long = 10000
-        private const val DELAY_DIALOG: Long = 10000
+        private const val DELAY: Long = 900000
+        private const val DELAY_DIALOG: Long = 900000
         const val INTERVAL: Long = 5000
 
         fun newIntent(context: Context): Intent {
