@@ -156,8 +156,8 @@ class Services : Service() {
         private const val CHANNEL_ID = "channel_id"
         private const val CHANNEL_NAME = "create_password"
         private const val NOTIFICATION_ID = 1
-        private const val DELAY: Long = 900000
-        private const val DELAY_DIALOG: Long = 900000
+        private const val DELAY: Long = 90000
+        private const val DELAY_DIALOG: Long = 90000
         const val INTERVAL: Long = 5000
 
         fun newIntent(context: Context): Intent {
