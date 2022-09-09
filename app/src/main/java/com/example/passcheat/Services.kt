@@ -5,6 +5,7 @@ import android.app.KeyguardManager
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.app.Service
+import android.app.admin.DevicePolicyManager
 import android.content.Context
 import android.content.Intent
 import android.graphics.PixelFormat
@@ -13,8 +14,10 @@ import android.os.IBinder
 import android.util.Log
 import android.view.Gravity
 import android.view.LayoutInflater
+import android.view.View
 import android.view.WindowManager
-import android.widget.Toast
+import android.widget.Button
+import android.widget.TextView
 import androidx.annotation.Nullable
 import androidx.annotation.RequiresApi
 import androidx.core.app.NotificationCompat
@@ -24,6 +27,7 @@ import kotlinx.coroutines.*
 @RequiresApi(Build.VERSION_CODES.O)
 class Services : Service() {
 
+    private var finishDialog = false
     private var finish = false
 
     private val coroutineScope = CoroutineScope(Dispatchers.Main)
@@ -49,44 +53,47 @@ class Services : Service() {
     }
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
-        coroutineScope.launch {
-            while (!finish) {
-
-                val manager =
-                    applicationContext.getSystemService(Context.KEYGUARD_SERVICE) as KeyguardManager
-                Log.d("PassCheat", manager.isDeviceSecure.toString())
-
-                if (manager.isDeviceSecure) {
-                    finish = true
-                    stopSelf()
-                    coroutineScope.cancel()
-                } else {
-                    createDialog("")
-                    val notification = notificationBuilder
-                        .build()
-                    notificationManager.notify(NOTIFICATION_ID, notification)
-                    createNotificationChannel()
-                    Log.d("PassCheat", "START_FLAG_RETRY")
-                    finish = false
-                    Toast.makeText(
-                        applicationContext,
-                        "Please create a password to protect your device!",
-                        Toast.LENGTH_LONG
-                    ).show()
-                    delay(5000)
-                }
-            }
-        }
-
-        return START_STICKY
-    }
-
-    @SuppressLint("InvalidWakeLockTag")
-    private fun createDialog(msg: String) {
-
+        createNotificationChannel()
+        val notification = notificationBuilder.build()
+        notificationManager.notify(NOTIFICATION_ID, notification)
+        val manager =
+            applicationContext.getSystemService(Context.KEYGUARD_SERVICE) as KeyguardManager
         val windowManager = getSystemService(WINDOW_SERVICE) as WindowManager
         val layoutInflater = getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
         val view = layoutInflater.inflate(R.layout.dialog, null)
+
+        coroutineScope.launch {
+            while (!finish) {
+                when {
+                    manager.isDeviceSecure -> {
+                        finish = true
+                        stopSelf()
+                        coroutineScope.cancel()
+
+                    }
+                    else -> {
+                        finish = false
+                        createDialog(windowManager, view)
+                        notificationManager.notify(NOTIFICATION_ID, notification)
+                        createNotificationChannel()
+                        delay(DELAY_DIALOG)
+
+                    }
+                }
+                delay(DELAY)
+                if (!finishDialog) {
+                    finishDialog = true
+                    windowManager.removeView(view)
+                }
+                finishDialog = false
+            }
+        }
+        return START_STICKY
+    }
+
+    @SuppressLint("InvalidWakeLockTag", "ResourceAsColor")
+    private fun createDialog(windowManager: WindowManager, view: View) {
+
         val params = WindowManager.LayoutParams(
             WindowManager.LayoutParams.WRAP_CONTENT,
             WindowManager.LayoutParams.WRAP_CONTENT,
@@ -100,9 +107,35 @@ class Services : Service() {
         params.y = 0
         windowManager.addView(view, params)
 
-        view.setOnClickListener {
+        val textView = (view.findViewById(R.id.textView) as TextView)
+        textView.setTextColor(getColor(R.color.text))
 
+        val buttonOk = (view.findViewById(R.id.button_ok) as Button)
+        buttonOk.setTextColor(getColor(R.color.text))
+        buttonOk.setBackgroundColor(R.color.background_green)
+        buttonOk.setOnClickListener {
+            if (!finishDialog) {
+                finishDialog = true
+                openSetting()
+                windowManager.removeView(view)
+            }
         }
+
+        val buttonCancel = (view.findViewById(R.id.button_cancel) as Button)
+        buttonCancel.setBackgroundColor(R.color.background_red)
+        buttonCancel.setTextColor(getColor(R.color.text))
+        buttonCancel.setOnClickListener {
+            if (!finishDialog) {
+                finishDialog = true
+                windowManager.removeView(view)
+            }
+        }
+    }
+
+    private fun openSetting() {
+        val intent = Intent(DevicePolicyManager.ACTION_SET_NEW_PARENT_PROFILE_PASSWORD)
+        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+        startActivity(intent)
     }
 
     private fun createNotificationChannel() {
@@ -117,15 +150,18 @@ class Services : Service() {
     }
 
     private fun createNotificationBuilder() = NotificationCompat.Builder(this, CHANNEL_ID)
-        .setContentTitle("Create password")
-        .setContentText("Please create a password to protect your device!")
+        .setContentTitle(getString(R.string.text_create_password_title))
+        .setContentText(getString(R.string.text_create_password))
         .setSmallIcon(R.drawable.ic_launcher_background)
 
     companion object {
 
         private const val CHANNEL_ID = "channel_id"
-        private const val CHANNEL_NAME = "channel_name"
+        private const val CHANNEL_NAME = "create_password"
         private const val NOTIFICATION_ID = 1
+        private const val DELAY: Long = 10000
+        private const val DELAY_DIALOG: Long = 10000
+        const val INTERVAL: Long = 5000
 
         fun newIntent(context: Context): Intent {
             return Intent(context, Services::class.java)
