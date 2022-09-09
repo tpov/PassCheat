@@ -1,0 +1,30 @@
+R_DEF: Internal format may change without notice
+local
+color background_green
+color background_red
+color black
+color purple_200
+color purple_500
+color purple_700
+color teal_200
+color teal_700
+color text
+color white
+drawable ic_launcher_background
+drawable ic_launcher_foreground
+id button_cancel
+id button_ok
+id textView
+layout dialog
+mipmap ic_launcher
+mipmap ic_launcher_round
+string access_application
+string app_name
+string button_cancel
+string button_ok
+string create_password
+string text_create_password
+string text_create_password_title
+style Theme.PassCheat
+xml backup_rules
+xml data_extraction_rules

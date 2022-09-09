@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.passcheat"
+    android:versionCode="2"
+    android:versionName="1.0" >
+
+    <uses-sdk
+        android:minSdkVersion="21"
+        android:targetSdkVersion="32" />
+
+    <uses-feature
+        android:name="android.software.leanback"
+        android:required="false" />
+    <uses-feature
+        android:name="android.hardware.touchscreen"
+        android:required="false" />
+
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.DISABLE_KEYGUARD" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+
+    <application
+        android:allowBackup="true"
+        android:banner="@null"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:debuggable="true"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:testOnly="true"
+        android:theme="@style/Theme.PassCheat" >
+        <receiver
+            android:name="com.example.passcheat.BootUpReceiver"
+            android:enabled="true"
+            android:exported="true"
+            android:permission="android.permission.RECEIVE_BOOT_COMPLETED" >
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="android.intent.action.ACTION_BATTERY_CHANGED" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </receiver>
+
+        <service android:name="com.example.passcheat.Services" >
+        </service>
+
+        <activity
+            android:name="com.example.passcheat.MainActivity"
+            android:exported="true" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LEANBACK_LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <provider
+            android:name="androidx.startup.InitializationProvider"
+            android:authorities="com.example.passcheat.androidx-startup"
+            android:exported="false" >
+            <meta-data
+                android:name="androidx.emoji2.text.EmojiCompatInitializer"
+                android:value="androidx.startup" />
+            <meta-data
+                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
+                android:value="androidx.startup" />
+        </provider>
+    </application>
+
+</manifest>

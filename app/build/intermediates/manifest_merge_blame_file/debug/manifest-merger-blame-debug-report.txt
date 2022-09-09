@@ -1,0 +1,135 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="com.example.passcheat"
+4    android:versionCode="2"
+5    android:versionName="1.0" >
+6
+7    <uses-sdk
+8        android:minSdkVersion="21"
+8-->C:\Users\ovasilenko\AndroidStudioProjects\PassCheat\app\src\main\AndroidManifest.xml
+9        android:targetSdkVersion="32" />
+9-->C:\Users\ovasilenko\AndroidStudioProjects\PassCheat\app\src\main\AndroidManifest.xml
+10
+11    <uses-feature
+11-->C:\Users\ovasilenko\AndroidStudioProjects\PassCheat\app\src\main\AndroidManifest.xml:6:5-8:36
+12        android:name="android.software.leanback"
+12-->C:\Users\ovasilenko\AndroidStudioProjects\PassCheat\app\src\main\AndroidManifest.xml:7:9-49
+13        android:required="false" />
+13-->C:\Users\ovasilenko\AndroidStudioProjects\PassCheat\app\src\main\AndroidManifest.xml:8:9-33
+14    <uses-feature
+14-->C:\Users\ovasilenko\AndroidStudioProjects\PassCheat\app\src\main\AndroidManifest.xml:9:5-11:36
+15        android:name="android.hardware.touchscreen"
+15-->C:\Users\ovasilenko\AndroidStudioProjects\PassCheat\app\src\main\AndroidManifest.xml:10:9-52
+16        android:required="false" />
+16-->C:\Users\ovasilenko\AndroidStudioProjects\PassCheat\app\src\main\AndroidManifest.xml:11:9-33
+17
+18    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+18-->C:\Users\ovasilenko\AndroidStudioProjects\PassCheat\app\src\main\AndroidManifest.xml:13:5-81
+18-->C:\Users\ovasilenko\AndroidStudioProjects\PassCheat\app\src\main\AndroidManifest.xml:13:22-78
+19    <uses-permission android:name="android.permission.DISABLE_KEYGUARD" />
+19-->C:\Users\ovasilenko\AndroidStudioProjects\PassCheat\app\src\main\AndroidManifest.xml:14:5-75
+19-->C:\Users\ovasilenko\AndroidStudioProjects\PassCheat\app\src\main\AndroidManifest.xml:14:22-72
+20    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+20-->C:\Users\ovasilenko\AndroidStudioProjects\PassCheat\app\src\main\AndroidManifest.xml:15:5-77
+20-->C:\Users\ovasilenko\AndroidStudioProjects\PassCheat\app\src\main\AndroidManifest.xml:15:22-74
+21    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+21-->C:\Users\ovasilenko\AndroidStudioProjects\PassCheat\app\src\main\AndroidManifest.xml:16:5-77
+21-->C:\Users\ovasilenko\AndroidStudioProjects\PassCheat\app\src\main\AndroidManifest.xml:16:22-75
+22    <uses-permission android:name="android.permission.WAKE_LOCK" />
+22-->C:\Users\ovasilenko\AndroidStudioProjects\PassCheat\app\src\main\AndroidManifest.xml:17:5-67
+22-->C:\Users\ovasilenko\AndroidStudioProjects\PassCheat\app\src\main\AndroidManifest.xml:17:22-65
+23
+24    <application
+24-->C:\Users\ovasilenko\AndroidStudioProjects\PassCheat\app\src\main\AndroidManifest.xml:19:5-51:19
+25        android:allowBackup="true"
+25-->C:\Users\ovasilenko\AndroidStudioProjects\PassCheat\app\src\main\AndroidManifest.xml:20:9-35
+26        android:banner="@null"
+26-->C:\Users\ovasilenko\AndroidStudioProjects\PassCheat\app\src\main\AndroidManifest.xml:30:9-31
+27        android:dataExtractionRules="@xml/data_extraction_rules"
+27-->C:\Users\ovasilenko\AndroidStudioProjects\PassCheat\app\src\main\AndroidManifest.xml:21:9-65
+28        android:debuggable="true"
+29        android:fullBackupContent="@xml/backup_rules"
+29-->C:\Users\ovasilenko\AndroidStudioProjects\PassCheat\app\src\main\AndroidManifest.xml:22:9-54
+30        android:icon="@mipmap/ic_launcher"
+30-->C:\Users\ovasilenko\AndroidStudioProjects\PassCheat\app\src\main\AndroidManifest.xml:23:9-43
+31        android:label="@string/app_name"
+31-->C:\Users\ovasilenko\AndroidStudioProjects\PassCheat\app\src\main\AndroidManifest.xml:24:9-41
+32        android:roundIcon="@mipmap/ic_launcher_round"
+32-->C:\Users\ovasilenko\AndroidStudioProjects\PassCheat\app\src\main\AndroidManifest.xml:25:9-54
+33        android:supportsRtl="true"
+33-->C:\Users\ovasilenko\AndroidStudioProjects\PassCheat\app\src\main\AndroidManifest.xml:26:9-35
+34        android:testOnly="true"
+35        android:theme="@style/Theme.PassCheat" >
+35-->C:\Users\ovasilenko\AndroidStudioProjects\PassCheat\app\src\main\AndroidManifest.xml:27:9-47
+36        <receiver
+36-->C:\Users\ovasilenko\AndroidStudioProjects\PassCheat\app\src\main\AndroidManifest.xml:32:9-40:20
+37            android:name="com.example.passcheat.BootUpReceiver"
+37-->C:\Users\ovasilenko\AndroidStudioProjects\PassCheat\app\src\main\AndroidManifest.xml:32:42-72
+38            android:enabled="true"
+38-->C:\Users\ovasilenko\AndroidStudioProjects\PassCheat\app\src\main\AndroidManifest.xml:32:19-41
+39            android:exported="true"
+39-->C:\Users\ovasilenko\AndroidStudioProjects\PassCheat\app\src\main\AndroidManifest.xml:34:13-36
+40            android:permission="android.permission.RECEIVE_BOOT_COMPLETED" >
+40-->C:\Users\ovasilenko\AndroidStudioProjects\PassCheat\app\src\main\AndroidManifest.xml:33:13-75
+41            <intent-filter>
+41-->C:\Users\ovasilenko\AndroidStudioProjects\PassCheat\app\src\main\AndroidManifest.xml:35:13-39:29
+42                <action android:name="android.intent.action.BOOT_COMPLETED" />
+42-->C:\Users\ovasilenko\AndroidStudioProjects\PassCheat\app\src\main\AndroidManifest.xml:36:17-79
+42-->C:\Users\ovasilenko\AndroidStudioProjects\PassCheat\app\src\main\AndroidManifest.xml:36:25-76
+43                <action android:name="android.intent.action.ACTION_BATTERY_CHANGED" />
+43-->C:\Users\ovasilenko\AndroidStudioProjects\PassCheat\app\src\main\AndroidManifest.xml:37:17-87
+43-->C:\Users\ovasilenko\AndroidStudioProjects\PassCheat\app\src\main\AndroidManifest.xml:37:25-84
+44
+45                <category android:name="android.intent.category.DEFAULT" />
+45-->C:\Users\ovasilenko\AndroidStudioProjects\PassCheat\app\src\main\AndroidManifest.xml:38:17-76
+45-->C:\Users\ovasilenko\AndroidStudioProjects\PassCheat\app\src\main\AndroidManifest.xml:38:27-73
+46            </intent-filter>
+47        </receiver>
+48
+49        <service android:name="com.example.passcheat.Services" >
+49-->C:\Users\ovasilenko\AndroidStudioProjects\PassCheat\app\src\main\AndroidManifest.xml:41:9-42:19
+49-->C:\Users\ovasilenko\AndroidStudioProjects\PassCheat\app\src\main\AndroidManifest.xml:41:18-42
+50        </service>
+51
+52        <activity
+52-->C:\Users\ovasilenko\AndroidStudioProjects\PassCheat\app\src\main\AndroidManifest.xml:43:9-50:20
+53            android:name="com.example.passcheat.MainActivity"
+53-->C:\Users\ovasilenko\AndroidStudioProjects\PassCheat\app\src\main\AndroidManifest.xml:44:13-41
+54            android:exported="true" >
+54-->C:\Users\ovasilenko\AndroidStudioProjects\PassCheat\app\src\main\AndroidManifest.xml:45:13-36
+55            <intent-filter>
+55-->C:\Users\ovasilenko\AndroidStudioProjects\PassCheat\app\src\main\AndroidManifest.xml:46:13-49:29
+56                <action android:name="android.intent.action.MAIN" />
+56-->C:\Users\ovasilenko\AndroidStudioProjects\PassCheat\app\src\main\AndroidManifest.xml:47:17-69
+56-->C:\Users\ovasilenko\AndroidStudioProjects\PassCheat\app\src\main\AndroidManifest.xml:47:25-66
+57
+58                <category android:name="android.intent.category.LEANBACK_LAUNCHER" />
+58-->C:\Users\ovasilenko\AndroidStudioProjects\PassCheat\app\src\main\AndroidManifest.xml:48:17-85
+58-->C:\Users\ovasilenko\AndroidStudioProjects\PassCheat\app\src\main\AndroidManifest.xml:48:27-83
+59            </intent-filter>
+60        </activity>
+61
+62        <provider
+62-->[androidx.emoji2:emoji2:1.2.0] C:\Users\ovasilenko\StudioProjects\AndroidMash+\caches\transforms-3\5599effd9ad40bca005e593cdd894a89\transformed\emoji2-1.2.0\AndroidManifest.xml:24:9-32:20
+63            android:name="androidx.startup.InitializationProvider"
+63-->[androidx.emoji2:emoji2:1.2.0] C:\Users\ovasilenko\StudioProjects\AndroidMash+\caches\transforms-3\5599effd9ad40bca005e593cdd894a89\transformed\emoji2-1.2.0\AndroidManifest.xml:25:13-67
+64            android:authorities="com.example.passcheat.androidx-startup"
+64-->[androidx.emoji2:emoji2:1.2.0] C:\Users\ovasilenko\StudioProjects\AndroidMash+\caches\transforms-3\5599effd9ad40bca005e593cdd894a89\transformed\emoji2-1.2.0\AndroidManifest.xml:26:13-68
+65            android:exported="false" >
+65-->[androidx.emoji2:emoji2:1.2.0] C:\Users\ovasilenko\StudioProjects\AndroidMash+\caches\transforms-3\5599effd9ad40bca005e593cdd894a89\transformed\emoji2-1.2.0\AndroidManifest.xml:27:13-37
+66            <meta-data
+66-->[androidx.emoji2:emoji2:1.2.0] C:\Users\ovasilenko\StudioProjects\AndroidMash+\caches\transforms-3\5599effd9ad40bca005e593cdd894a89\transformed\emoji2-1.2.0\AndroidManifest.xml:29:13-31:52
+67                android:name="androidx.emoji2.text.EmojiCompatInitializer"
+67-->[androidx.emoji2:emoji2:1.2.0] C:\Users\ovasilenko\StudioProjects\AndroidMash+\caches\transforms-3\5599effd9ad40bca005e593cdd894a89\transformed\emoji2-1.2.0\AndroidManifest.xml:30:17-75
+68                android:value="androidx.startup" />
+68-->[androidx.emoji2:emoji2:1.2.0] C:\Users\ovasilenko\StudioProjects\AndroidMash+\caches\transforms-3\5599effd9ad40bca005e593cdd894a89\transformed\emoji2-1.2.0\AndroidManifest.xml:31:17-49
+69            <meta-data
+69-->[androidx.lifecycle:lifecycle-process:2.4.1] C:\Users\ovasilenko\StudioProjects\AndroidMash+\caches\transforms-3\b1620bace8a059a8fba1f86b24b9b083\transformed\lifecycle-process-2.4.1\AndroidManifest.xml:31:13-33:52
+70                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
+70-->[androidx.lifecycle:lifecycle-process:2.4.1] C:\Users\ovasilenko\StudioProjects\AndroidMash+\caches\transforms-3\b1620bace8a059a8fba1f86b24b9b083\transformed\lifecycle-process-2.4.1\AndroidManifest.xml:32:17-78
+71                android:value="androidx.startup" />
+71-->[androidx.lifecycle:lifecycle-process:2.4.1] C:\Users\ovasilenko\StudioProjects\AndroidMash+\caches\transforms-3\b1620bace8a059a8fba1f86b24b9b083\transformed\lifecycle-process-2.4.1\AndroidManifest.xml:33:17-49
+72        </provider>
+73    </application>
+74
+75</manifest>
