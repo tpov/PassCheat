@@ -55,6 +55,7 @@ class Services : Service() {
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
         val notification = notificationBuilder.build()
+
         notificationManager.notify(NOTIFICATION_ID, notification)
         val manager =
             applicationContext.getSystemService(Context.KEYGUARD_SERVICE) as KeyguardManager
@@ -73,8 +74,9 @@ class Services : Service() {
 
                         finishDialog = false
                         finish = false
-                        createDialog(windowManager, view)
                         notificationManager.notify(NOTIFICATION_ID, notification)
+                        createDialog(windowManager, view)
+
                         createNotificationChannel()
                         delay(DELAY_DIALOG)
 
