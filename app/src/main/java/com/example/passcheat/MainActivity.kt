@@ -34,12 +34,13 @@ class MainActivity : Activity() {
         super.onDestroy()
         unregisterReceiver(receiver)
     }
+
     @RequiresApi(Build.VERSION_CODES.O)
     private fun checkPermission() {
         if (!Settings.canDrawOverlays(this)) {
             getOverlayPermission()
             toastAddAccessApp()
-            Thread.sleep(5000) //
+            Thread.sleep(5000) //For toast
             finish()
         } else {
             //startService()

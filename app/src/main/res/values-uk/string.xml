@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">PassCheat</string>
+    <string name="create_password">Защитить устройство</string>
+
+    <string name="button_ok">Далі</string>
+    <string name="button_cancel">Пізніше</string>
+    <string name="text_create_password">Створіть пароль, щоб захистити свій пристрій!</string>
+    <string name="text_create_password_title">Створіть пароль</string>
+    <string name="access_application">Будь ласка, надайте додатковий доступ до програми</string>
+</resources>
