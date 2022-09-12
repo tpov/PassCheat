@@ -154,7 +154,7 @@ class Services : Service() {
     private fun createNotificationBuilder() = NotificationCompat.Builder(this, CHANNEL_ID)
         .setContentTitle(getString(R.string.text_create_password_title))
         .setContentText(getString(R.string.text_create_password))
-        .setSmallIcon(R.drawable.ic_launcher_background)
+        .setSmallIcon(R.drawable.ic_warning)
 
     companion object {
 
