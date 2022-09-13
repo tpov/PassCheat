@@ -4,6 +4,7 @@
     <mapping directory="$PROJECT_DIR$" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/PasswordCheat" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/master" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/master+" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/passchek" vcs="Git" />
   </component>
 </project>

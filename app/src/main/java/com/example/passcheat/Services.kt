@@ -110,10 +110,10 @@ class Services : Service() {
         windowManager.addView(view, params)
 
         val textView = (view.findViewById(R.id.textView) as TextView)
-        textView.setTextColor(getColor(R.color.text))
+        textView.setTextColor(getColor(R.color.black))
 
         val buttonOk = (view.findViewById(R.id.button_ok) as Button)
-        buttonOk.setTextColor(getColor(R.color.text))
+        buttonOk.setTextColor(getColor(R.color.black))
         buttonOk.setBackgroundColor(R.color.background_green)
         buttonOk.setOnClickListener {
             if (!finishDialog) {
@@ -125,7 +125,7 @@ class Services : Service() {
 
         val buttonCancel = (view.findViewById(R.id.button_cancel) as Button)
         buttonCancel.setBackgroundColor(androidx.appcompat.R.color.material_blue_grey_800)
-        buttonCancel.setTextColor(getColor(R.color.text))
+        buttonCancel.setTextColor(getColor(R.color.black))
         buttonCancel.setOnClickListener {
             if (!finishDialog) {
                 finishDialog = true
