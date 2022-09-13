@@ -5,7 +5,7 @@
 
     <string name="button_ok">Далі</string>
     <string name="button_cancel">Пізніше</string>
-    <string name="text_create_password">Створіть пароль, щоб захистити свій пристрій!</string>
+    <string name="text_create_password">Користування пристрою без захисту заборонено!</string>
     <string name="text_create_password_title">Створіть пароль</string>
     <string name="access_application">Будь ласка, надайте додатковий доступ до програми</string>
 </resources>

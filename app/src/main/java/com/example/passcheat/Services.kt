@@ -110,11 +110,11 @@ class Services : Service() {
         windowManager.addView(view, params)
 
         val textView = (view.findViewById(R.id.textView) as TextView)
-        textView.setTextColor(getColor(R.color.black))
+        textView.setTextColor(getColor(android.R.color.holo_orange_dark))
 
         val buttonOk = (view.findViewById(R.id.button_ok) as Button)
-        buttonOk.setTextColor(getColor(R.color.black))
-        buttonOk.setBackgroundColor(R.color.background_green)
+        buttonOk.setTextColor(getColor(android.R.color.holo_green_dark))
+        buttonOk.setBackgroundColor(R.color.white)
         buttonOk.setOnClickListener {
             if (!finishDialog) {
                 finishDialog = true

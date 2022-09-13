@@ -4,7 +4,8 @@
 
     <string name="button_ok">OK</string>
     <string name="button_cancel">Later</string>
-    <string name="text_create_password">"Please create a password to protect your device!"</string>
+    <string name="text_create_password">Use of the device without protection is prohibited!</string>
     <string name="text_create_password_title">"Create password"</string>
     <string name="access_application">"Please grant additional access to the application"</string>
+    <string name="warning">Warning!!!</string>
 </resources>
