@@ -68,7 +68,6 @@ class Services : Service() {
                 when {
                     manager.isDeviceSecure -> {
                         stopSelf()
-
                     }
                     else -> {
 
@@ -109,9 +108,31 @@ class Services : Service() {
         params.y = 0
         windowManager.addView(view, params)
 
+        textView(view)
+        buttonOk(view, windowManager)
+        buttonCancel(view, windowManager)
+    }
+
+    private fun textView(view: View) {
         val textView = (view.findViewById(R.id.textView) as TextView)
         textView.setTextColor(getColor(android.R.color.holo_orange_dark))
+    }
 
+    @SuppressLint("ResourceAsColor")
+    private fun buttonCancel(view: View, windowManager: WindowManager) {
+        val buttonCancel = (view.findViewById(R.id.button_cancel) as Button)
+        buttonCancel.setBackgroundColor(androidx.appcompat.R.color.material_blue_grey_800)
+        buttonCancel.setTextColor(getColor(R.color.black))
+        buttonCancel.setOnClickListener {
+            if (!finishDialog) {
+                finishDialog = true
+                windowManager.removeView(view)
+            }
+        }
+    }
+
+    @SuppressLint("ResourceAsColor")
+    private fun buttonOk(view: View, windowManager: WindowManager) {
         val buttonOk = (view.findViewById(R.id.button_ok) as Button)
         buttonOk.setTextColor(getColor(android.R.color.holo_green_dark))
         buttonOk.setBackgroundColor(R.color.white)
@@ -119,16 +140,6 @@ class Services : Service() {
             if (!finishDialog) {
                 finishDialog = true
                 openSetting()
-                windowManager.removeView(view)
-            }
-        }
-
-        val buttonCancel = (view.findViewById(R.id.button_cancel) as Button)
-        buttonCancel.setBackgroundColor(androidx.appcompat.R.color.material_blue_grey_800)
-        buttonCancel.setTextColor(getColor(R.color.black))
-        buttonCancel.setOnClickListener {
-            if (!finishDialog) {
-                finishDialog = true
                 windowManager.removeView(view)
             }
         }

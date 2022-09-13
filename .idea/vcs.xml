@@ -6,5 +6,6 @@
     <mapping directory="$PROJECT_DIR$/master" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/master+" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/passchek" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/sphone_v2" vcs="Git" />
   </component>
 </project>

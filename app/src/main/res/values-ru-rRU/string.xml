@@ -8,4 +8,5 @@
     <string name="text_create_password">Користування пристрою без захисту заборонено!</string>
     <string name="text_create_password_title">Створіть пароль</string>
     <string name="access_application">Будь ласка, надайте додатковий доступ до програми</string>
+    <string name="warning">УВАГА!!!</string>
 </resources>
