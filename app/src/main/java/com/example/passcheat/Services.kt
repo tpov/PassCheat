@@ -163,10 +163,5 @@ class Services : Service() {
         private const val NOTIFICATION_ID = 1
         private const val DELAY: Long = 90000
         private const val DELAY_DIALOG: Long = 90000
-        const val INTERVAL: Long = 5000
-
-        fun newIntent(context: Context): Intent {
-            return Intent(context, Services::class.java)
-        }
     }
 }

@@ -43,7 +43,6 @@ class MainActivity : Activity() {
             Thread.sleep(5000) //For toast
             finish()
         } else {
-            //startService()
             finish()
         }
     }
@@ -66,7 +65,7 @@ class MainActivity : Activity() {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == MANAGE_OVERLAY_PERMISSION_REQUEST_CODE) {
             if (Settings.canDrawOverlays(this)) {
-               //startService()
+
             }
         }
     }
